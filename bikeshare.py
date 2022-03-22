@@ -1,12 +1,11 @@
 import time
 import pandas as pd
 import numpy as np
-#import datetime
 from datetime import datetime, timedelta
 
-CITY_DATA = { 'chicago': 'chicago.csv',
+CITY_DATA = {'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+              'washington': 'washington.csv'}
 MONTH_DATA = {
               'january' : 1,
               'february' : 2,
@@ -49,31 +48,31 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    ##################################--INPUT CITY--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--INPUT CITY--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input("Please enter the name of City (chicago, new york city, washington): ")
+    city = input("Please enter the name of City (chicago, new york city, washington): ").lower()
     while city not in CITY_DATA:
-        city = input("Please enter the correct name of City (chicago, new york city, washington)': ")
+        city = input("Please enter the correct name of City (chicago, new york city, washington)': ").lower()
 
-    ##################################--INPUT MONTH--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--INPUT MONTH--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # get user input for month (all, january, february, ... , june)
-    month = input("Please enter the name of Month (all, january, february, ... , june): ")
+    month = input("Please enter the name of Month (all, january, february, ... , june): ").lower()
     while month != 'all':
         if month in MONTH_DATA:
             break
         else:
-            month = input("Please enter the correct name of Month (all, january, february, ... , june): ")
+            month = input("Please enter the correct name of Month (all, january, february, ... , june): ").lower()
 
-    ##################################--INPUT DAY--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--INPUT DAY--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    day = input("Please enter the name of Day (all, monday, tuesday, ... sunday): ")
+    day = input("Please enter the name of Day (all, monday, tuesday, ... sunday): ").lower()
     while day != 'all':
         if day in DAY_DATA:
             break
         else:
-            day = input("Please enter the correct name of Day (all, monday, tuesday, ... sunday): ")
-    ##################################--THE END--##################################
-    print('-'*40)
+            day = input("Please enter the correct name of Day (all, monday, tuesday, ... sunday): ").lower()
+    
+    print('♥'*40)
     return city, month, day
 
 
@@ -88,10 +87,10 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    ##################################--LOAD CITY--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--LOAD CITY--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     df = pd.read_csv(CITY_DATA[city])
 
-    ##################################--LOAD MONTH--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--LOAD MONTH--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     list1 = []
     if month != 'all':
         for index, row in df.iterrows():
@@ -99,7 +98,7 @@ def load_data(city, month, day):
                 list1.append(index)
         df.drop(list1, axis=0, inplace=True)  
 
-    ##################################--LOAD DAY--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--LOAD DAY--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     list1 = []
     if day != 'all':
         for index, row in df.iterrows():
@@ -116,7 +115,7 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    ##################################--COMMON MONTH--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMMON MONTH--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display the most common month
     month = []
     for index, row in df.iterrows():
@@ -127,7 +126,7 @@ def time_stats(df):
     most_common_month_num = df['Month'].mode()[0]
     print('The most common month: ', get_key(MONTH_DATA, most_common_month_num))
 
-    ##################################--COMMON DAY--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMMON DAY--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display the most common day of week
     day = []
     for index, row in df.iterrows():
@@ -138,7 +137,7 @@ def time_stats(df):
     most_common_day_num = df['Days'].mode()[0]
     print('The most common day of week: ', get_key(DAY_DATA, most_common_day_num))
 
-    ##################################--COMMON HOUR--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMMON HOUR--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display the most common start hour
     hour = []
     for index, row in df.iterrows():
@@ -149,9 +148,8 @@ def time_stats(df):
     most_common_hour = df['Hour'].mode()[0]
     print('The most common start hour: ', str(most_common_hour))
     
-    ##################################--THE END--##################################
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
+    print('♥'*40)
 
 
 def station_stats(df):
@@ -160,23 +158,23 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    ##################################--COMMON START STATION--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMMON START STATION--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display most commonly used start station
     start_station = df['Start Station'].mode()[0]
     print("Most commonly used start station: " + start_station)
 
-    ##################################--COMMON END STATION--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMMON END STATION--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display most commonly used end station
     end_station = df['End Station'].mode()[0]
     print("Most commonly used end station: " + end_station)
 
-    ##################################--COMBINATION--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--COMBINATION--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # display most frequent combination of start station and end station trip
     combination = df.groupby(['Start Station', 'End Station']).size().idxmax()
     print("Most commonly used combination stations: " + str(combination))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
+    print('♥'*40)
 
 
 def trip_duration_stats(df):
@@ -185,21 +183,21 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    #####################################--SUM--#####################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--SUM--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     #total trip duration
     total_sec = int(df['Trip Duration'].sum())
     total_time = str(timedelta(seconds=total_sec))
     print('Total trip duration: ', total_time)
 
-    #####################################--AVERAGE--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--AVERAGE--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     #average trip duration
     mean_sec = int(df['Trip Duration'].mean())
     mean_time = str(timedelta(seconds=mean_sec))
     print('Average trip duration: ', mean_time)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
-    
+    print('♥'*40)
+
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
@@ -207,40 +205,56 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    ##################################--USER TYPE--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--USER TYPE--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # Display counts of user types
     print('Counts of user types: ')
     print(df['User Type'].value_counts())
     print('\n')
 
-    ##################################--GENDER--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--GENDER--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # Display counts of gender
     if 'Gender' in df.columns:
         print('Counts of gender: ')
         print(df['Gender'].value_counts())
         print('\n')
 
-    ##################################--YEARS--##################################
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--YEARS--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     # Display earliest, most recent, and most common year of birth
     if 'Birth Year' in df.columns:
         earliest = df['Birth Year'].min()
         most_recent = df['Birth Year'].max()
         most_common_year = df['Birth Year'].mode()[0]
 
-        print('Earliest: ' + str(earliest))
-        print('Most recent: ' + str(most_recent))
-        print('Most common year: ' + str(most_common_year))
+        print('Earliest: ' , int(earliest))
+        print('Most recent: ' , int(most_recent))
+        print('Most common year: ' , int(most_common_year))
         print('\n')
-        
-    ##################################--THE END--##################################
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
 
+    #♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥--THE END--♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('♥'*40)
+
+
+def display_data(df):
+    """ Display 5 lines of data upon request by the user """
+
+    out = input('\nDo you want to see the first 5 rows of data? Enter yes or no.\n')
+    start_index = 0
+    end_index = 5
+    while out.lower() == 'yes':
+        print(df.iloc[start_index:end_index])
+        start_index = end_index
+        end_index += 5
+        out = input('\nDo you want to see the next 5 rows of data? Enter yes or no.\n')
+    print('♥'*40)
+        
 
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
+
+        display_data(df)
 
         time_stats(df)
         station_stats(df)
@@ -251,5 +265,6 @@ def main():
         if restart.lower() != 'yes':
             break
 
+
 if __name__ == "__main__":
-	main()
+    main()

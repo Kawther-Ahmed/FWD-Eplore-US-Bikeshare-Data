@@ -246,6 +246,9 @@ def display_data(df):
         start_index = end_index
         end_index += 5
         out = input('\nDo you want to see the next 5 rows of data? Enter yes or no.\n')
+
+        if end_index > 300000:
+            print('Sorry the chosen file has only 300000 lines..')
     print('♥'*40)
         
 

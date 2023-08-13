@@ -1,3 +1,4 @@
+Exploration and analysis of bikeshare data. Data cleaning, data manipulation, statistical analysis, visualization.
 ############################--USED--############################
 
 

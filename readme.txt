@@ -1,4 +1,4 @@
-#Explore US Bikeshare Data
+# Explore US Bikeshare Data
 Exploration and analysis of bikeshare data. Data cleaning, data manipulation, statistical analysis, visualization.
 
 
